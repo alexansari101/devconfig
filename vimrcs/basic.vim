@@ -31,12 +31,11 @@ set backspace=indent,eol,start
 
 " Ignore case when searching
 set ignorecase
-
 " When searching try to be smart about cases 
 set smartcase
 
-" Highlight search results
-set hlsearch
+" Do not highlight search results.
+set nohlsearch
 
 " Makes search act like search in modern browsers
 set incsearch
@@ -52,15 +51,30 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-syntax on
+" Use an old-school block curosr instead of thin cursor.
+set guicursor=
+
+set scrolloff=8
+
+" Do not make annoying error sounds 
+set noerrorbells
+
+syntax enable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" unicode characters in the file autoload/float.vim
+set encoding=utf-8
+
 " Turn backup off, since most stuff is in SVN, git etc. anyway...
 set nobackup
 set nowb
 set noswapfile
+" Works great with undotree plugin
+set undodir=~/.vim/undodir
+set undofile 
 
 " Use spaces instead of tabs
 set expandtab
@@ -76,7 +90,13 @@ set autoindent "Auto indent
 set smartindent "Smart indent
 set wrap linebreak nolist "Wrap lines
 
-map <leader>h :noh<CR>
+" Todo: This is remapped below. Use something different.
+" map <leader>h :noh<CR>
+
+colorscheme gruvbox
+set background=dark
+
+nnoremap <C-p> :Files<CR>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -127,11 +147,13 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TODO: Fix issue with gnome terminal interpreting Alt as Esc key
 " Move a line of text using ALT+[jk] or Command+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+" noremap <Esc>j <M-j>
+" nmap <M-j> mz:m+<cr>`z
+" nmap <M-k> mz:m-2<cr>`z
+" vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+" vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -145,11 +167,18 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+" Spelling errors are highlighted using the SpellBad highlighting group
+hi clear SpellBad
+hi SpellBad cterm=underline
+" Set style for gvim
+hi SpellBad gui=undercurl
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TODO: conflicts with <space>p CoC listResume
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+" map <leader>pp :setlocal paste!<cr>
 
 set nocompatible
 set showcmd
