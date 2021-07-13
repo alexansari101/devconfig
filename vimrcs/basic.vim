@@ -184,7 +184,7 @@ set nocompatible
 set showcmd
 set number
 
-imap jj <Esc>
+imap jk <Esc>
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
