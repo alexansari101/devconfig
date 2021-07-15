@@ -82,7 +82,9 @@ plugins=(
     git
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-completions
 )
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -137,6 +139,10 @@ alias ll='ls -alF'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # My fzf customizations
+#
+# TODO: Add this source statement to .profile or add statements below to .fzf.zsh
+# [-f ~/.myfzf.zsh ] && source ~/.myfzf.zsh
+# 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

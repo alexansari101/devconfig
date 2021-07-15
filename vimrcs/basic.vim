@@ -96,7 +96,10 @@ set wrap linebreak nolist "Wrap lines
 colorscheme gruvbox
 set background=dark
 
+" Shortcuts to open project files, recent files, and comand history.
 nnoremap <C-p> :Files<CR>
+nnoremap <C-h> :History<CR>
+nnoremap <S-h> :History:<CR>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -114,11 +117,12 @@ map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
 
 " Useful mappings for managing tabs
+nnoremap <leader>tt :tab ba<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>t<leader> :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
