@@ -98,8 +98,8 @@ set background=dark
 
 " Shortcuts to open project files, recent files, and comand history.
 nnoremap <C-p> :Files<CR>
-nnoremap <C-h> :History<CR>
-nnoremap <S-h> :History:<CR>
+nnoremap <leader>p :History<CR>
+nnoremap <leader>ch :History:<CR>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
