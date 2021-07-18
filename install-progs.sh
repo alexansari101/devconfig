@@ -46,5 +46,5 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 echo "Installing vim plugins..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/start/fzf
 git clone https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
-~/.vim/pack/plugins/start/fzf/install
+~/.vim/pack/plugins/start/fzf/install --all
 
