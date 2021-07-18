@@ -44,7 +44,16 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 echo "Installing vim plugins..."
+# gruvbox
+git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/plugins/start/gruvbox
+# vimwiki
+git clone https://github.com/vimwiki/vimwiki.git ~/.vim/pack/plugins/start/vimwiki
+# fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/start/fzf
 git clone https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
 ~/.vim/pack/plugins/start/fzf/install --all
+# coc
+curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+apt-get install -y nodejs 
+git clone https://github.com/neoclide/coc.nvim.git ~/.vim/pack/plugins/start/coc.nvim
 
