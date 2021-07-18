@@ -90,6 +90,8 @@ set autoindent "Auto indent
 set smartindent "Smart indent
 set wrap linebreak nolist "Wrap lines
 
+set relativenumber
+
 " Todo: This is remapped below. Use something different.
 " map <leader>h :noh<CR>
 
