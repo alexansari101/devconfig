@@ -42,20 +42,12 @@ locale-gen en_US.UTF-8
 #       It may be worth using dpkg-reconfigure to later fix tzdata.
 #
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends software-properties-common
-apt-get update && apt-get -y install software-properties-common
 add-apt-repository -y ppa:neovim-ppa/unstable
 apt-get update && apt-get -y install neovim python3-dev python3-pip
 python3 -m pip install --user --upgrade pynvim
-# configure nvim to use .vimrc
-mkdir -p ~/.config/nvim
-echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
-echo "let &packpath = &runtimepath" >> ~/.config/nvim/init.vim
-echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
-echo "" >> ~/.config/nvim/init.vim
 
 mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
-
 
 # Install latest bat.
 # Ubuntu 20.04 has a conflict with shared lib in crates2.json between bats and ripgrep. 
@@ -70,10 +62,6 @@ rm -f "bat_${BAT_DEB_VERSION}_amd64.deb"
 
 apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
-# Make zsh your default shell:
-# chsh -s $(which zsh)
-# ~/anaconda3/bin/conda init zsh
-
 # install oh-my-zsh
 echo "Installing oh-my-zsh..."
 echo "N" | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -87,21 +75,17 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 echo "Installing vim plugins..."
 # vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# # gruvbox
-# git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/plugins/start/gruvbox
-# # vimwiki
-# git clone https://github.com/vimwiki/vimwiki.git ~/.vim/pack/plugins/start/vimwiki
-# fzf
-# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/start/fzf
-# git clone https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
-# ~/.vim/pack/plugins/start/fzf/install --all
 # required by coc:
 curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 apt-get update && apt-get install -y nodejs 
 npm install --global yarn
-# git clone https://github.com/neoclide/coc.nvim.git ~/.vim/pack/plugins/start/coc.nvim
-# 
+# Install the plugins using vim-plug
 nvim --headless +PlugInstall +qa
+nvim --headless "+CocInstall coc-pyright" +qa
 
 apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+# Make zsh your default shell:
+chsh -s $(which zsh)
+# ~/anaconda3/bin/conda init zsh
 

@@ -190,4 +190,5 @@ unset __conda_setup
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # fzf generated configuration
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
