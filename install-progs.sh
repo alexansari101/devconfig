@@ -85,19 +85,23 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 echo "Installing vim plugins..."
-# gruvbox
-git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/plugins/start/gruvbox
-# vimwiki
-git clone https://github.com/vimwiki/vimwiki.git ~/.vim/pack/plugins/start/vimwiki
+# vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# # gruvbox
+# git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/plugins/start/gruvbox
+# # vimwiki
+# git clone https://github.com/vimwiki/vimwiki.git ~/.vim/pack/plugins/start/vimwiki
 # fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/start/fzf
-git clone https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
-~/.vim/pack/plugins/start/fzf/install --all
-# coc
+# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.vim/pack/plugins/start/fzf
+# git clone https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/fzf.vim
+# ~/.vim/pack/plugins/start/fzf/install --all
+# required by coc:
 curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-apt-get install -y nodejs 
+apt-get update && apt-get install -y nodejs 
 npm install --global yarn
-git clone https://github.com/neoclide/coc.nvim.git ~/.vim/pack/plugins/start/coc.nvim
+# git clone https://github.com/neoclide/coc.nvim.git ~/.vim/pack/plugins/start/coc.nvim
+# 
+nvim --headless +PlugInstall +qa
 
 apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 

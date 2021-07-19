@@ -135,9 +135,6 @@ export EDITOR='vim'
 # My aliases
 alias ll='ls -alF'
 
-# fzf generated configuration
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # My fzf customizations
 #
 # TODO: Add this source statement to .profile or add statements below to .fzf.zsh
@@ -191,3 +188,6 @@ unset __conda_setup
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# fzf generated configuration
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
