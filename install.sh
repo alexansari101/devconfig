@@ -7,11 +7,6 @@
 #       OR run a docker command like this 
 #       docker run --rm -it -v $PWD:/root/devconfig -e TERM=xterm-256color ubuntu:20.04
 #       (See: https://stackoverflow.com/questions/33493456/docker-bash-prompt-does-not-display-color-output/34779089)
-#
-# TODO: Install vim coc plugin's extensions by script. E.g., vim "+CocInstall coc-pyright" +qa. Note: This doesnt work with the +qa.
-#       Alternatively: consider copying/linking .config/coc/.
-#
-# TODO: Configure vimrcs before headless nvim installs
 
 # ask for password upfront
 sudo -v
