@@ -7,7 +7,7 @@ PARENT_PATH=$(dirname $(realpath $0))
 echo "Linking .tmux.conf..."
 ln -sf "$PARENT_PATH/tmux/.tmux.conf" "$HOME"
 
-echo "Linknig zsh configuration..."
+echo "Linking zsh configuration..."
 ln -sf $PARENT_PATH/zsh/.zshrc $HOME
 ln -sf $PARENT_PATH/zsh/.p10k.zsh $HOME
 
