@@ -130,7 +130,7 @@ bindkey -v
 bindkey 'jk' vi-cmd-mode
 
 # Editor
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # My aliases
 alias ll='ls -alF'
