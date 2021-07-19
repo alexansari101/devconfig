@@ -1,20 +1,23 @@
 #!/bin/bash
 
-# TODO: Issues with (docker) terminal colors. 
+# NOTE: Issues with (docker) terminal colors. 
 #       Fix:
 #       TERM=xterm-256color  # force 256 color mode.
 #       alias tmux='tmux -u' # for utf8 support
 #       OR run a docker command like this 
-#       docker run -it -v $PWD:/root/devconfig -e TERM=xterm-256color -e alias='tmux -u' ubuntu:20.04 script -q -c "/bin/bash" /dev/null
+#       docker run --rm -it -v $PWD:/root/devconfig -e TERM=xterm-256color ubuntu:20.04
 #       (See: https://stackoverflow.com/questions/33493456/docker-bash-prompt-does-not-display-color-output/34779089)
 #
 # TODO: Install vim coc plugin's extensions by script. E.g., vim "+CocInstall coc-pyright" +qa. Note: This doesnt work with the +qa.
 #       Alternatively: consider copying/linking .config/coc/.
+#
+# TODO: Move nvim configuration into install.sh
 
 # ask for password upfront
 sudo -v
 
 apt-get update && apt-get -y install \
+    locales \
     build-essential \
     htop \
     git \
@@ -30,6 +33,25 @@ apt-get update && apt-get -y install \
     tmux \
     stow \
     vim
+
+# Generaete the en_US.UTF-8 in case the system does not already have it.
+locale-gen en_US.UTF-8
+
+# Install latest (unstable) nightly version of neovim
+# NOTE: This skips tzdata configuration and defaults to UTC instead of US, Pacific.
+#       It may be worth using dpkg-reconfigure to later fix tzdata.
+#
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends software-properties-common
+apt-get update && apt-get -y install software-properties-common
+add-apt-repository -y ppa:neovim-ppa/unstable
+apt-get update && apt-get -y install neovim python3-dev python3-pip
+python3 -m pip install --user --upgrade pynvim
+# configure nvim to use .vimrc
+mkdir -p ~/.config/nvim
+echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
+echo "let &packpath = &runtimepath" >> ~/.config/nvim/init.vim
+echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+echo "" >> ~/.config/nvim/init.vim
 
 mkdir -p ~/.local/bin
 ln -s $(which fdfind) ~/.local/bin/fd
