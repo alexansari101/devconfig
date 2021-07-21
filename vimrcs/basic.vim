@@ -1,13 +1,27 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" TODO
+" Neovim Treesitter
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Plug 'nvim-treesitter/playground'
+
+" TODO
+" Telescope requirements...
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
-
 
 filetype plugin on
 filetype indent on
@@ -120,6 +134,10 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
+" Resize windows
+nnoremap <Leader>+ :vertical resize +5<CR>
+nnoremap <Leader>- :vertical resize -5<CR>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
@@ -205,6 +223,8 @@ imap jk <Esc>
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+" Delete selection to unnamed register and paste last in its place
+vnoremap <leader>p "_dP
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
