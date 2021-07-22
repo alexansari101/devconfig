@@ -70,3 +70,6 @@ export CXX="/usr/bin/clang++-${LLVM_VERSION}"
 export COV="/usr/bin/llvm-cov-${LLVM_VERSION}"
 export LLDB="/usr/bin/lldb-${LLVM_VERSION}"
 
+# nvim: set up coc-clangd extension
+nvim --headless "+CocInstall coc-clangd" +qa
+
