@@ -19,6 +19,10 @@ Plug 'junegunn/fzf.vim'
 " Plug 'nvim-telescope/telescope.nvim'
 " Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
+" TODO: prettier
+Plug 'sbdchd/neoformat'
+Plug 'ambv/black'
+
 Plug 'vimwiki/vimwiki'
 
 call plug#end()

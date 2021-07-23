@@ -63,12 +63,16 @@ ln -sf /usr/bin/clang-${LLVM_VERSION} /usr/bin/clang
 ln -sf /usr/bin/clang++-${LLVM_VERSION} /usr/bin/clang++
 ln -sf /usr/bin/clang-cpp-${LLVM_VERSION} /usr/bin/clang-cpp
 ln -sf /usr/bin/clang-tidy-${LLVM_VERSION} /usr/bin/clang-tidy
+ln -sf /usr/bin/clang-format-${LLVM_VERSION} /usr/bin/clang-format
 
 # Set environment variables to use clang instead of CC
 export CC="/usr/bin/clang-${LLVM_VERSION}"
 export CXX="/usr/bin/clang++-${LLVM_VERSION}"
 export COV="/usr/bin/llvm-cov-${LLVM_VERSION}"
 export LLDB="/usr/bin/lldb-${LLVM_VERSION}"
+
+# Install python code formatter
+pip3 install black
 
 # nvim: set up coc-clangd extension
 mkdir -p ~/.config/coc/extensions
