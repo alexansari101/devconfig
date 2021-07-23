@@ -9,3 +9,5 @@ ADD . devconfig
 
 RUN ./devconfig/install.sh
 
+CMD ["zsh"]
+

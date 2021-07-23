@@ -71,5 +71,7 @@ export COV="/usr/bin/llvm-cov-${LLVM_VERSION}"
 export LLDB="/usr/bin/lldb-${LLVM_VERSION}"
 
 # nvim: set up coc-clangd extension
-nvim --headless "+CocInstall coc-clangd" +qa
+mkdir -p ~/.config/coc/extensions
+cd ~/.config/coc/extensions
+npm install coc-pyright coc-clangd coc-json coc-snippets --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
 

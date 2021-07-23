@@ -78,7 +78,6 @@ npm install --global yarn
 PARENT_PATH=$(dirname $(realpath $0))
 source $PARENT_PATH/install-dotfiles.sh
 nvim --headless +PlugInstall +qa
-nvim --headless "+CocInstall coc-pyright" +qa
 
 apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
