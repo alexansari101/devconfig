@@ -7,6 +7,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+if has("nvim")
 " TODO
 " Neovim Treesitter
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -17,6 +18,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+end
 
 " TODO: prettier
 Plug 'sbdchd/neoformat'
