@@ -12,12 +12,11 @@ Plug 'junegunn/fzf.vim'
 " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'nvim-treesitter/playground'
 
-" TODO
 " Telescope requirements...
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-" Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " TODO: prettier
 Plug 'sbdchd/neoformat'
@@ -45,6 +44,14 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
 " Turn on the Wild menu
 set wildmenu
+" Ignore files
+set wildignore+=*.pyc
+set wildignore+=*_build/*
+set wildignore+=**/coverage/*
+set wildignore+=**/node_modules/*
+set wildignore+=**/android/*
+set wildignore+=**/ios/*
+set wildignore+=**/.git/*
 
 "Always show current position
 set ruler
@@ -129,7 +136,7 @@ set background=dark
 
 " Shortcuts to open project files, recent files, and comand history.
 nnoremap <C-p> :Files<CR>
-nnoremap <leader>p :History<CR>
+nnoremap <leader>ph :History<CR>
 nnoremap <leader>ch :History:<CR>
 
 " Smart way to move between windows
@@ -215,9 +222,8 @@ hi SpellBad gui=undercurl
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TODO: conflicts with <space>p CoC listResume
 " Toggle paste mode on and off
-" map <leader>pp :setlocal paste!<cr>
+map <leader>pp :setlocal paste!<cr>
 
 set nocompatible
 set showcmd
@@ -229,6 +235,12 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 
 " Delete selection to unnamed register and paste last in its place
 vnoremap <leader>p "_dP
+
+" Make Y yank till end of line to mirror behavior of D
+nnoremap Y yg$
+
+" Join lines and return cursor to initial location
+nnoremap J mzJ`z
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
