@@ -17,7 +17,7 @@ echo "" >> ~/.vimrc
 echo "source $PARENT_PATH/vimrcs/basic.vim" >> ~/.vimrc
 echo "source $PARENT_PATH/vimrcs/fzf.vim" >> ~/.vimrc
 # Install coc for vim only if nvim is not installed. (We are using built-in lsp for nvim)
-hash nvim 2>/dev/null || { echo "source $PARENT_PATH/vimrcs/coc.vim" >> ~/.vimrc }
+hash nvim 2>/dev/null || { echo "source $PARENT_PATH/vimrcs/coc.vim" >> ~/.vimrc; exit 1; }
 echo "" >> ~/.vimrc
 
 echo "Writing .config/nvim/"
