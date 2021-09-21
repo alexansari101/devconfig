@@ -32,6 +32,8 @@ endif
 Plug 'sbdchd/neoformat'
 Plug 'ambv/black'
 
+Plug 'tpope/vim-fugitive'
+
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
