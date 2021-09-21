@@ -2,26 +2,32 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 if has("nvim")
-" TODO
-" Neovim Treesitter
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" Plug 'nvim-treesitter/playground'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/nvim-cmp'
+    " Plug 'nvim-lua/completion-nvim'
 
-" Telescope requirements...
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+    " TODO
+    " Neovim Treesitter
+    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " Plug 'nvim-treesitter/playground'
 
-" StatusLine
-Plug 'hoob3rt/lualine.nvim'
-end
+    " Telescope requirements...
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
+    " StatusLine
+    Plug 'hoob3rt/lualine.nvim'
+else
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 
 " TODO: prettier
 Plug 'sbdchd/neoformat'

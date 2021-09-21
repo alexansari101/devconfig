@@ -74,8 +74,14 @@ export LLDB="/usr/bin/lldb-${LLVM_VERSION}"
 # Install python code formatter
 pip3 install black
 
-# nvim: set up coc-clangd extension
+# vim: set up coc-clangd extension
 mkdir -p ~/.config/coc/extensions
 cd ~/.config/coc/extensions
 npm install coc-pyright coc-clangd coc-json coc-snippets --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+
+# nvim: install language service provders for built-in lsp
+mkdir "${HOME}/.npm-packages"
+npm config set prefix "${HOME}/.npm-packages"
+npm i -g pyright
+npm i -g typescript typescript-language-server
 

@@ -125,6 +125,17 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# NPM
+# add .npm-packages to PATH. We will use this for 'global' installs instead of /usr/local
+NPM_PACKAGES="${HOME}/.npm-packages"
+
+export PATH="$PATH:$NPM_PACKAGES/bin"
+
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+
+
 # Use vi keybindings
 bindkey -v
 bindkey 'jk' vi-cmd-mode
@@ -137,9 +148,6 @@ alias ll='ls -alF'
 
 # My fzf customizations
 #
-# TODO: Add this source statement to .profile or add statements below to .fzf.zsh
-# [-f ~/.myfzf.zsh ] && source ~/.myfzf.zsh
-# 
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --border'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
