@@ -12,10 +12,9 @@ if has("nvim")
     Plug 'hrsh7th/nvim-cmp'
     " Plug 'nvim-lua/completion-nvim'
 
-    " TODO
     " Neovim Treesitter
-    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " Plug 'nvim-treesitter/playground'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground'
 
     " Telescope requirements...
     Plug 'nvim-lua/popup.nvim'
