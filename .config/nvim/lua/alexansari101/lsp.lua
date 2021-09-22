@@ -78,3 +78,32 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
   }
 end
+
+-- More specialized configuration for clangd
+if vim.fn.executable("clangd") == 1 then
+    nvim_lsp.clangd.setup {
+        capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+        on_attach = on_attach,
+        cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--suggest-missing-includes"
+        },
+        filetypes = {"c", "cpp", "objc", "objcpp"},
+        init_options = {
+            -- compilationDatabasePath="cmake-build",
+            fallbackFlags = {
+                "-nostdinc++",
+                "-nostdlib++",
+                "-I/usr/lib/llvm-12/include/c++/v1",
+                "-L/usr/lib/llvm-12/lib",
+                "-Wl,-rpath,/usr/lib/llvm-12/lib",
+                "-lc++",
+                "-Wall",
+                "-std=c++20"
+            },
+        },
+        -- root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git") or dirname
+    }
+end
