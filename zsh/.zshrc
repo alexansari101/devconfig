@@ -125,6 +125,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Go
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/go/bin"
+
 # NPM
 # add .npm-packages to PATH. We will use this for 'global' installs instead of /usr/local
 NPM_PACKAGES="${HOME}/.npm-packages"
