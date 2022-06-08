@@ -27,6 +27,7 @@ apt-get update && apt-get -y install \
     zsh \
     tmux \
     stow \
+    unzip \
     vim
 
 # Generaete the en_US.UTF-8 in case the system does not already have it.

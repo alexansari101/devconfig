@@ -10,7 +10,16 @@ if has("nvim")
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/nvim-cmp'
+    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+    Plug 'onsails/lspkind-nvim'
+    Plug 'nvim-lua/lsp_extensions.nvim'
     " Plug 'nvim-lua/completion-nvim'
+    " Plug 'glepnir/lspsaga.nvim'
+    " Plug 'simrat39/symbols-outline.nvim'
+
+    " Snippets
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'rafamadriz/friendly-snippets'
 
     " Neovim Treesitter
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -131,8 +140,9 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set softtabstop=4
+set tabstop=4
+set shiftwidth=0 "0 for tabstop
+set softtabstop=0 "0 for tabstop
 
 set autoindent "Auto indent
 set smartindent "Smart indent

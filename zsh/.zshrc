@@ -204,3 +204,5 @@ unset __conda_setup
 # fzf generated configuration
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias luamake=/home/aansari/lua-language-server/3rd/luamake/luamake

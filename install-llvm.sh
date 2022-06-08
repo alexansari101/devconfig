@@ -84,4 +84,18 @@ mkdir "${HOME}/.npm-packages"
 npm config set prefix "${HOME}/.npm-packages"
 npm i -g pyright
 npm i -g typescript typescript-language-server
+npm i -g tree-sitter tree-sitter-cli
+# Build lua language server
+cd ~/
+git clone  --depth=1 https://github.com/sumneko/lua-language-server
+cd lua-language-server
+git submodule update --depth 1 --init --recursive
+cd 3rd/luamake
+./compile/install.sh
+cd ../..
+./3rd/luamake/luamake rebuild
+# Install rust-analyzer from binary
+cd ~/
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer
 
