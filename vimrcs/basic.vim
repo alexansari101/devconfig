@@ -29,7 +29,8 @@ if has("nvim")
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
-    Plug 'nvim-telescope/telescope-fzy-native.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    " Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
     " StatusLine
     Plug 'hoob3rt/lualine.nvim'
@@ -158,7 +159,7 @@ set background=dark
 
 " Shortcuts to open project files, recent files, and comand history.
 nnoremap <C-p> :Files<CR>
-nnoremap <leader>ph :History<CR>
+" nnoremap <leader>ph :History<CR>
 nnoremap <leader>ch :History:<CR>
 
 " Smart way to move between windows
