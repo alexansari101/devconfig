@@ -35,6 +35,9 @@ if has("nvim")
     " Comments
     Plug 'numToStr/Comment.nvim'
 
+    " Spellchecker for buffers with treesitter highlighting
+    Plug 'lewis6991/spellsitter.nvim'
+
     " StatusLine
     Plug 'hoob3rt/lualine.nvim'
 else
@@ -232,8 +235,9 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
+" Pressing <leader>ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
+set spell
 
 " Shortcuts using <leader>
 map <leader>sn ]s

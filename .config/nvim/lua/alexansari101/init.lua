@@ -3,6 +3,7 @@ require("alexansari101.telescope")
 require("alexansari101.treesitter")
 require("alexansari101.lsp")
 require("alexansari101.lualine")
+require("alexansari101.spellsitter")
 
 P = function(v)
   print(vim.inspect(v))
