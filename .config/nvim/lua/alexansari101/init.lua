@@ -1,3 +1,4 @@
+require("alexansari101.comment")
 require("alexansari101.telescope")
 require("alexansari101.treesitter")
 require("alexansari101.lsp")

@@ -32,6 +32,9 @@ if has("nvim")
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'nvim-telescope/telescope-file-browser.nvim'
 
+    " Comments
+    Plug 'numToStr/Comment.nvim'
+
     " StatusLine
     Plug 'hoob3rt/lualine.nvim'
 else
