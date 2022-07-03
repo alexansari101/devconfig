@@ -40,6 +40,9 @@ if has("nvim")
 
     " StatusLine
     Plug 'hoob3rt/lualine.nvim'
+
+    " Markdown
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 else
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
