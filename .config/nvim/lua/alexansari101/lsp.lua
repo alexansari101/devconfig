@@ -1,15 +1,16 @@
 local sumneko_root_path = "/home/aansari/lua-language-server"
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Setup nvim-cmp completion
-local cmp = require 'cmp'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
 local source_mapping = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
-    nvim_lua = "[Lua]",
+    luasnip = "[Lua]",
     cmp_tabnine = "[TN]",
     path = "[Path]",
 }
@@ -18,15 +19,9 @@ local lspkind = require("lspkind")
 cmp.setup({
     snippet = {
         expand = function(args)
-            -- For `vsnip` user.
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
-
             -- For `luasnip` user.
-            require('luasnip').lsp_expand(args.body)
-
-            -- For `ultisnips` user.
-            -- vim.fn["vsnip#anonymous"](args.body)
-        end,
+            luasnip.lsp_expand(args.body)
+        end
     },
     mapping = cmp.mapping.preset.insert({
         ['<TAB>'] = cmp.mapping.confirm({ select = true }),
@@ -34,6 +29,23 @@ cmp.setup({
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ['<C-e>'] = cmp.mapping.close(),
         ["<C-Space>"] = cmp.mapping.complete(),
+        --
+        -- Jump to next/previous snippet placeholder
+        --
+        ["sn"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(1) then
+                luasnip.jump(1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ["sp"] = cmp.mapping(function(fallback)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
     }),
     sources = {
         { name = 'cmp_tabnine' },
@@ -50,6 +62,8 @@ cmp.setup({
         -- { name = 'ultisnips' },
 
         { name = 'buffer' },
+
+        { name = 'path' },
     },
     formatting = {
         format = function(entry, vim_item)
@@ -82,53 +96,25 @@ tabnine:setup({
 })
 
 -- Setup lspconfig.
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local lspconfig = require('lspconfig')
+local lsp_defaults = lspconfig.util.default_config
 
-    -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
-    -- Mappings.
-    local opts = { noremap = true, silent = true }
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<space>qq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
-
-end
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lsp_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+)
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local nvim_lsp = require('lspconfig')
 local servers = { 'pyright', 'gopls', 'rust_analyzer', 'tsserver' }
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-        capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
-        on_attach = on_attach,
-    }
+    lspconfig[lsp].setup({})
 end
 
 -- More specialized configuration for clangd
 if vim.fn.executable("clangd") == 1 then
-    nvim_lsp.clangd.setup {
-        capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
-        on_attach = on_attach,
+    lspconfig.clangd.setup({
         cmd = {
             "clangd",
             "--background-index",
@@ -150,12 +136,10 @@ if vim.fn.executable("clangd") == 1 then
             },
         },
         -- root_dir = root_pattern("compile_commands.json", "compile_flags.txt", ".git") or dirname
-    }
+    })
 end
 
-nvim_lsp.sumneko_lua.setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
-    on_attach = on_attach,
+lspconfig.sumneko_lua.setup({
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
     settings = {
         Lua = {
@@ -178,4 +162,54 @@ nvim_lsp.sumneko_lua.setup {
             },
         },
     },
-}
+})
+
+-- local snippets_paths = function()
+-- 	local plugins = { "friendly-snippets" }
+-- 	local paths = {}
+-- 	local path
+-- 	local root_path = vim.env.HOME .. "/.vim/plugged/"
+-- 	for _, plug in ipairs(plugins) do
+-- 		path = root_path .. plug
+-- 		if vim.fn.isdirectory(path) ~= 0 then
+-- 			table.insert(paths, path)
+-- 		end
+-- 	end
+-- 	return paths
+-- end
+--
+-- require("luasnip.loaders.from_vscode").lazy_load({
+-- 	paths = snippets_paths(),
+-- 	include = nil, -- Load all languages
+-- 	exclude = {},
+-- })
+
+-- Neovim emits an LspAttach event when a language server is attached to a buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function()
+        local bufmap = function(mode, lhs, rhs)
+            local opts = { buffer = true, noremap = true, silent = true }
+            vim.keymap.set(mode, lhs, rhs, opts)
+        end
+        -- Mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
+        bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+        bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+        -- bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+        bufmap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
+        bufmap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
+        bufmap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+        bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+        bufmap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
+        bufmap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+        bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
+        -- bufmap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+        bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+        bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
+        bufmap('n', '<space>qq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
+        bufmap('n', '<space>f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>')
+    end
+})
