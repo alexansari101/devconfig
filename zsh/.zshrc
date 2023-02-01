@@ -148,7 +148,11 @@ bindkey 'jk' vi-cmd-mode
 export EDITOR='nvim'
 
 # My aliases
-alias ll='ls -alF'
+alias ls='exa'
+alias ll='exa -Slhga'
+alias du='dust'
+alias ps='procs'
+alias top='btm --color gruvbox'
 
 # My fzf customizations
 #
@@ -206,3 +210,5 @@ unset __conda_setup
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias luamake=/home/aansari/lua-language-server/3rd/luamake/luamake
+
+source /home/aansari/.config/broot/launcher/bash/br
