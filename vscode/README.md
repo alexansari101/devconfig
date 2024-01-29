@@ -34,4 +34,4 @@
 ## TODO
 - Add script to install vscode
 - Automatically install extensions
-- Copy settings.json to appropriate config location.
+ 
