@@ -125,10 +125,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Go
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
-
 # NPM
 # add .npm-packages to PATH. We will use this for 'global' installs instead of /usr/local
 NPM_PACKAGES="${HOME}/.npm-packages"
@@ -138,21 +134,6 @@ export PATH="$PATH:$NPM_PACKAGES/bin"
 # Preserve MANPATH if you already defined it somewhere in your config.
 # Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
-
-
-# Use vi keybindings
-bindkey -v
-bindkey 'jk' vi-cmd-mode
-
-# Editor
-export EDITOR='nvim'
-
-# My aliases
-alias ls='exa'
-alias ll='exa -Slhga'
-alias du='dust'
-alias ps='procs'
-alias top='btm --color gruvbox'
 
 # My fzf customizations
 #
@@ -186,29 +167,12 @@ _fzf_comprun() {
   esac
 }
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/aansari/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/aansari/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/aansari/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/aansari/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # fzf generated configuration
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias luamake=/home/aansari/lua-language-server/3rd/luamake/luamake
+# Add additional custom configuration here.
+[ -f $HOME/.custom.zsh ] && source $HOME/.custom.zsh
 
-source /home/aansari/.config/broot/launcher/bash/br

@@ -1,3 +1,0 @@
-{
-    "clangd.fallbackFlags": ["-nostdinc++", "-nostdlib++", "-I/usr/lib/llvm-12/include/c++/v1", "-L/usr/lib/llvm-12/lib", "-Wl,-rpath,/usr/lib/llvm-12/lib", "-lc++", "-Wall", "-std=c++20"]
-}
