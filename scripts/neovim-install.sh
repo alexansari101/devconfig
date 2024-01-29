@@ -3,7 +3,7 @@
 # Installing neovim latest from src.
 # deps: ninja-build gettext cmake unzip curl
 echo "Building neovim from src..."
-NEOVIM_SRC_PATH="$HOME/.local/src/"
+NEOVIM_SRC_PATH="$HOME/.local/src"
 mkdir -p $NEOVIM_SRC_PATH
 git clone https://github.com/neovim/neovim git $NEOVIM_SRC_PATH
 cd $NEOVIM_SRC_PATH/neovim
