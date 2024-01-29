@@ -1,0 +1,42 @@
+{
+  "workbench.editor.enablePreview": false,
+  "workbench.colorTheme": "Default Dark+",
+  "window.zoomLevel": 1,
+  "remote.portsAttributes": {},
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "boundary",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/bazel-bin": true,
+    "**/bazel-out": true,
+    "**/bazel-testlogs": true
+  },
+  "terminal.integrated.scrollback": 100000,
+  "doxdocgen.c.commentPrefix": "///",
+  "doxdocgen.c.firstLine": "///",
+  "doxdocgen.c.lastLine": "///",
+  "doxdocgen.c.triggerSequence": "///",
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "cSpell.allowCompoundWords": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "cSpell.userWords": ["Ansari", "pydantic"]
+}

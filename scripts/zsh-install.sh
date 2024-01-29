@@ -18,9 +18,9 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 # Configure zsh
 echo "Linking zsh configs..."
 PARENT_PATH=$(dirname $(realpath $0))
-ln -sf $PARENT_PATH/zsh/.zshrc $HOME
-ln -sf $PARENT_PATH/zsh/.custom.zsh $HOME
-ln -sf $PARENT_PATH/zsh/.p10k.zsh $HOME
+cp $PARENT_PATH/zsh/.zshrc $HOME
+cp $PARENT_PATH/zsh/.custom.zsh $HOME
+cp $PARENT_PATH/zsh/.p10k.zsh $HOME
 
 # Make zsh the default shell:
 echo "Configuring zsh as default shell."

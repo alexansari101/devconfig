@@ -1,0 +1,9 @@
+[user]
+	name = Alex Ansari
+	email = alex.r.ansari@gmail.com
+[merge]
+	tool = vimdiff
+[mergetool "vimdiff"]
+	path = nvim
+[init]
+	defaultBranch = main
