@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Installing build tools..."
 apt-get update && apt-get -y install \
     build-essential \
     gettext \
@@ -16,3 +17,4 @@ apt-get update && apt-get -y install \
 
 apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
+echo "done."

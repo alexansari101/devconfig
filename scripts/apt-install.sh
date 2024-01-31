@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Installing basics cli tools..."
 apt-get update && apt-get -y install \
     locales \
     git \
@@ -17,3 +18,4 @@ echo "Copying .gitconfig..."
 PARENT_PATH=$(dirname $(realpath $0))
 cp "$PARENT_PATH/git/.gitconfig" "$HOME"
 
+echo "done."

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Installing neovim latest from src.
 # deps: ninja-build gettext cmake unzip curl
 echo "Building neovim from src..."

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 apt-get update && apt-get -y install zsh
 
 apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*

@@ -15,5 +15,6 @@ mkdir -p ~/.local/src
 # Extras
 ./scripts/miniconda-install.sh
 ./scripts/build-install.sh
-./scripts/neovim-install.sh
-
+./scripts/npm-install.sh
+# ./scripts/neovim-install.sh
+# ./scripts/ollama-install.sh
