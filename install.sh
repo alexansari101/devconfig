@@ -18,3 +18,4 @@ mkdir -p ~/.local/src
 ./scripts/npm-install.sh
 # ./scripts/neovim-install.sh
 # ./scripts/ollama-install.sh
+# ./scripts/github-cli-install.sh
