@@ -17,5 +17,6 @@ mkdir -p ~/.local/src
 ./scripts/build-install.sh
 ./scripts/npm-install.sh
 # ./scripts/neovim-install.sh
+# ./scripts/llvm-install.sh
 # ./scripts/ollama-install.sh
 # ./scripts/github-cli-install.sh

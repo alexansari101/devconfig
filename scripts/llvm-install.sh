@@ -70,32 +70,3 @@ export CC="/usr/bin/clang-${LLVM_VERSION}"
 export CXX="/usr/bin/clang++-${LLVM_VERSION}"
 export COV="/usr/bin/llvm-cov-${LLVM_VERSION}"
 export LLDB="/usr/bin/lldb-${LLVM_VERSION}"
-
-# Install python code formatter
-pip3 install black
-
-# vim: set up coc-clangd extension
-mkdir -p ~/.config/coc/extensions
-cd ~/.config/coc/extensions
-npm install coc-pyright coc-clangd coc-json coc-snippets --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
-
-# nvim: install language service provders for built-in lsp
-mkdir "${HOME}/.npm-packages"
-npm config set prefix "${HOME}/.npm-packages"
-npm i -g pyright
-npm i -g typescript typescript-language-server
-npm i -g tree-sitter tree-sitter-cli
-# Build lua language server
-cd ~/
-git clone  --depth=1 https://github.com/sumneko/lua-language-server
-cd lua-language-server
-git submodule update --depth 1 --init --recursive
-cd 3rd/luamake
-./compile/install.sh
-cd ../..
-./3rd/luamake/luamake rebuild
-# Install rust-analyzer from binary
-cd ~/
-curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
-chmod +x ~/.local/bin/rust-analyzer
-
