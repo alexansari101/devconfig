@@ -16,7 +16,9 @@ mkdir -p ~/.local/src
 ./scripts/miniconda-install.sh
 ./scripts/build-install.sh
 ./scripts/npm-install.sh
+./scripts/tmux-install.sh
 # ./scripts/neovim-install.sh
 # ./scripts/llvm-install.sh
 # ./scripts/ollama-install.sh
 # ./scripts/github-cli-install.sh
+# ./scripts/keepassxc-install.sh
