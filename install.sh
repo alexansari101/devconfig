@@ -22,7 +22,5 @@ mkdir -p ~/.local/src
 # ./scripts/ollama-install.sh
 # ./scripts/github-cli-install.sh
 # ./scripts/keepassxc-install.sh
-
-# WIP
 # ./scripts/docker-install.sh
-# ./scripts/docker-nvidia-container-toolkit.sh
+# ./scripts/docker-nvidia-container-toolkit-install.sh
