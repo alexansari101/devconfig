@@ -18,6 +18,6 @@ p10k configure
 ## TODO:
  - Confirm PARENT_PATH variable is correct in new scripts/ folders. 
  - Test updated install scripts.
- - Break out extras from basics in install scripts.
- - Download and configure use of nerdfonts.
+ - Download and configure use of nerdfonts: Fira Code Mono.
  - Install vscode from dep or snap.
+ - Finish docker nvidia container script to automate configuration.
