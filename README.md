@@ -20,4 +20,4 @@ p10k configure
  - Test updated install scripts.
  - Download and configure use of nerdfonts: Fira Code Mono.
  - Install vscode from dep or snap.
- - Finish docker nvidia container script to automate configuration.
+ - Test docker nvidia container toolkit script rootless config.

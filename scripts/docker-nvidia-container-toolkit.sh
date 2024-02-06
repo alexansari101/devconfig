@@ -18,13 +18,9 @@ systemctl restart docker
 
 echo "Configuring container runtime for rootless docker..."
 nvidia-ctk runtime configure --runtime=docker --config=$HOME/.config/docker/daemon.json
+# Note: I may need to remove the --user to avoid an error.
 systemctl --user restart docker
-echo "Manual Configuration TODO: sudo vi /etc/nvidia/container-runtime/config.toml"
-echo "Change: no-cgroups = true"
-# #TODO:
-# #sudo vi /etc/nvidia/container-runtime/config.toml
-# #update the line:
-# #no-cgroups = true
+# Modify line: no-cgroups = false -> no-cgroups = true
+sed -i 's/#no-cgroups = false/no-cgroups = true/' /etc/nvidia/container-runtime/config.toml
 
 echo "Done."
-
