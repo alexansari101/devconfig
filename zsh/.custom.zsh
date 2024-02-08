@@ -14,6 +14,7 @@ alias top='btm --color gruvbox'
 
 source /home/alex/.config/broot/launcher/bash/br
 alias tree='br -s'
+eval "$(zoxide init zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
