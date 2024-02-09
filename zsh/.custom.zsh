@@ -7,7 +7,7 @@ export EDITOR='nvim'
 
 # My aliases
 alias ls='exa'
-alias ll='exa -Slhga'
+alias ll='exa -Slhga --icons --git'
 alias du='dust'
 alias ps='procs'
 alias top='btm --color gruvbox'
