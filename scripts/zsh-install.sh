@@ -18,11 +18,15 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 # Configure zsh
-echo "Linking zsh configs..."
+echo "Copying zsh configs..."
 PARENT_PATH=$(dirname $(realpath $0))
 cp $PARENT_PATH/zsh/.zshrc $HOME
 cp $PARENT_PATH/zsh/.custom.zsh $HOME
 cp $PARENT_PATH/zsh/.p10k.zsh $HOME
+
+# Copy my CLI helper scripts
+mkdir -p $HOME/.config/my_scripts
+cp $PARENT_PATH/zsh/records-backup.sh $HOME/.config/my_scripts/
 
 # Make zsh the default shell:
 echo "Configuring zsh as default shell."

@@ -16,6 +16,9 @@ source /home/alex/.config/broot/launcher/bash/br
 alias tree='br -s'
 eval "$(zoxide init zsh)"
 
+# My CLI Helper Scripts
+source $HOME/.config/my_scripts/records-backup.sh
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/alex/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
