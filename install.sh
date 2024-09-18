@@ -24,3 +24,4 @@ mkdir -p ~/.local/src
 # ./scripts/keepassxc-install.sh
 # ./scripts/docker-install.sh
 # ./scripts/docker-nvidia-container-toolkit-install.sh
+# ./scripts/nix-pkgs-install.sh
